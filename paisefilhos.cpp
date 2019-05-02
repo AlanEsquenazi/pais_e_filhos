@@ -12,7 +12,7 @@ void adicionar(string nome, string aluno, string pai, string mae){
 */
 void pesquisar_aluno(string nome, string aluno){
     ifstream arquivo;
-    arquivo.open(nome);
+    arquivo.open(nome.c_str());
     string line;
     while(getline(arquivo, line)){
         string apm[3];
@@ -36,7 +36,7 @@ void pesquisar_aluno(string nome, string aluno){
 }
 void pesquisar_mae(string nome, string mae){
     ifstream arquivo;
-    arquivo.open(nome);
+    arquivo.open(nome.c_str());
     string line;
     while(getline(arquivo, line)){
         string apm[3];
@@ -60,7 +60,7 @@ void pesquisar_mae(string nome, string mae){
 }
 void pesquisar_pai(string nome, string pai){
     ifstream arquivo;
-    arquivo.open(nome);
+    arquivo.open(nome.c_str());
     string line;
     while(getline(arquivo, line)){
         string apm[3];
@@ -88,7 +88,7 @@ void input(string entrada){
     if(entrada =="inserir"){
         cin>>aluno>>pai>>mae;
         adicionar("paisefilhos.txt", aluno, pai, mae);
-    }else 
+    }else
     */
    if(entrada =="pesquisaraluno"||entrada =="pesquisar aluno"||entrada =="pesquisar_aluno"||entrada =="Pesquisaraluno"||entrada =="P esquisar aluno"||entrada =="Pesquisar Aluno"){
         cin>>aluno;
