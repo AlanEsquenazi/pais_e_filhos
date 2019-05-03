@@ -82,6 +82,106 @@ void pesquisar_pai(string nome, string pai){
     }
     arquivo.close();
 }
+void pesquisar_aluno_primeiro_nome(string nome, string aluno){
+    ifstream arquivo;
+    arquivo.open(nome.c_str());
+    string line;
+    char a_p_n[100];
+    while(getline(arquivo, line)){
+        string apm[3];
+        int conta = 0;
+        for(int i=0;i<sizeof(line);i++){
+            if(line[i]==';'){
+                break;
+            }else{
+                if(!(line[i]==':')){
+                    apm[conta] +=line[i];
+                }else{
+                    conta++;
+            }
+            }
+        }
+        for(int i=0;i<sizeof(apm[0]);i++){
+            if(!(apm[0][i]=='_')){
+                a_p_n[i] = apm[0][i];
+                //cout<<a_p_n;
+            }else{
+                break;
+            }
+        }
+        if(a_p_n==aluno){
+            cout<<"Aluno: "<<apm[0]<<" Pai: "<<apm[1]<<" Mae: "<<apm[2]<<'\n';
+        }
+    }
+    arquivo.close();
+}
+void pesquisar_pai_primeiro_nome(string nome, string pai){
+    ifstream arquivo;
+    arquivo.open(nome.c_str());
+    string line;
+    char p_p_n[100];
+    while(getline(arquivo, line)){
+        string apm[3];
+        int conta = 0;
+        for(int i=0;i<sizeof(line);i++){
+            if(line[i]==';'){
+                break;
+            }else{
+                if(!(line[i]==':')){
+                    apm[conta] +=line[i];
+                }else{
+                    conta++;
+            }
+            }
+        }
+        for(int i=0;i<sizeof(apm[1]);i++){
+            if(!(apm[1][i]=='_')){
+                p_p_n[i] = apm[1][i];
+                //cout<<a_p_n;
+            }else{
+                break;
+            }
+        }
+        if(p_p_n==pai){
+            cout<<"Aluno: "<<apm[0]<<" Pai: "<<apm[1]<<" Mae: "<<apm[2]<<'\n';
+        }
+    }
+    arquivo.close();
+}
+
+void pesquisar_mae_primeiro_nome(string nome, string mae){
+    ifstream arquivo;
+    arquivo.open(nome.c_str());
+    string line;
+    char m_p_n[100];
+    while(getline(arquivo, line)){
+        string apm[3];
+        int conta = 0;
+        for(int i=0;i<sizeof(line);i++){
+            if(line[i]==';'){
+                break;
+            }else{
+                if(!(line[i]==':')){
+                    apm[conta] +=line[i];
+                }else{
+                    conta++;
+            }
+            }
+        }
+        for(int i=0;i<sizeof(apm[2]);i++){
+            if(!(apm[2][i]=='_')){
+                m_p_n[i] = apm[2][i];
+                //cout<<a_p_n;
+            }else{
+                break;
+            }
+        }
+        if(m_p_n==mae){
+            cout<<"Aluno: "<<apm[0]<<" Pai: "<<apm[1]<<" Mae: "<<apm[2]<<'\n';
+        }
+    }
+    arquivo.close();
+}
 void input(string entrada){
     string pai, mae, aluno;
     /*
@@ -99,8 +199,17 @@ void input(string entrada){
     }else if(entrada=="pesquisarpai"||entrada=="pesquisar pai"||entrada=="Pesquisarpai"||entrada=="Pesquisar pai"||entrada=="Pesquisar Pai"){
         cin>>pai;
         pesquisar_pai("paisefilhos.txt", pai);
+    }else if(entrada == "pesquisaralunoprimeironome"){
+        cin>>aluno;
+        pesquisar_aluno_primeiro_nome("paisefilhos.txt",aluno);
+    }else if(entrada == "pesquisarpaiprimeironome"){
+        cin>>aluno;
+        pesquisar_pai_primeiro_nome("paisefilhos.txt",aluno);
+    }else if(entrada == "pesquisarmaeprimeironome"){
+        cin>>aluno;
+        pesquisar_mae_primeiro_nome("paisefilhos.txt",aluno);
     }else{
-        cout<<"Comando nao reconhecido; favor digitar pesquisaraluno, pesquisarmae ou pesquisarpai"<<'\n';
+        cout<<"Comando nao reconhecido; favor digitar pesquisaraluno, pesquisarmae, pesquisarpai, pesquisaralunoprimeironome, pesquisarpaiprimeironome ou pesquisarmaeprimeironome "<<'\n';
     }
 }
 int main(){
